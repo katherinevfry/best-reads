@@ -63,6 +63,16 @@ I'm hoping to use the Google Books API. I have already registered with Google De
     },
     
 ```
+## Wireframes
+- home view
+   ![home view](https://i.imgur.com/4N7pPYy.png)
+   
+- bookshelves view
+   ![bookshelves](https://i.imgur.com/nyIJIdM.png)
+- books view
+    ![books](https://i.imgur.com/JTXjK74.png)
+- single book
+   ![single book](https://i.imgur.com/04eNRXt.png)
 
 ## LINK TO COMPLETED BIO PROJECT
 https://github.com/katherinevfry/react-personal-bio
