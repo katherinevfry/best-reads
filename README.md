@@ -10,6 +10,10 @@ https://www.getpostman.com/collections/3688ac192a1122e6cda7
 
 I'm hoping to use the Google Books API. I have already registered with Google Developers. Here is a link to my Postman collection with the GET API calls. I've included a call that returns *all* info for a certain query, one that only returns the most relevant details about a query for a book, and one that only returns most relevent details about a query for an author. My app will still function without this API, but I believe it would greatly add to the functionality and user experience.
 
+## Project Board & Issue Tickets
+https://github.com/katherinevfry/best-reads/issues
+
+
 ### Sample response
 ```
  {
@@ -63,6 +67,33 @@ I'm hoping to use the Google Books API. I have already registered with Google De
     },
     
 ```
+
+## User Stories
+ ### Potential MVP
+ - As a user I should be able to log in to the app.
+ - As a user I should see my Bookshelves and some of my recent books on the home page.
+- As a user I should be able to create, read, update, and delete a Bookshelf.
+- As a user I should be able to add books from My Books to Bookshelves.
+- As a user I should be able to create, read, update, and delete a book.
+- As a user I should be able to see all my books on one view.
+- As a user I should be able to review a book.
+- As a user I should be able to rate a book on a scale of 1-5.
+- As a user I should only see my own books and bookshelves.
+- As a user I should be able to change which Bookshelf a book is on.
+- As a user I should be able to search for a book using the Google Books API.
+- As a user I should be able to see the books returned from the API request.
+- As a user I should be able to save a book from the API request to my Books.
+- As a user I should be able to see a public reviews page with book reviews from other users.
+- As a user I should be able to make a book public or private. (Public books are shared to explore/review page).
+
+ ### Potential Stretch Goals
+- As a user, I should be able to externally share my review of a book.
+- As a user I should be able to see when I started reading a book and when I finished reading a book, and sort my books chronologically.
+- As a user I should be able to sort books by rating.
+
+
+
+
 ## Wireframes
 - home view
    ![home view](https://i.imgur.com/4N7pPYy.png)
@@ -77,6 +108,10 @@ I'm hoping to use the Google Books API. I have already registered with Google De
     ![books](https://i.imgur.com/Jw3Ioxz.png)
 - single book
    ![single book](https://i.imgur.com/2lUDkTk.png)
+- explore page
+   ![explore](https://i.imgur.com/FrDP5Li.png)
+- search page
+   ![search page](https://i.imgur.com/fPyM2CO.png)
 
 ## LINK TO COMPLETED BIO PROJECT
 https://github.com/katherinevfry/react-personal-bio
