@@ -92,7 +92,8 @@ I'm hoping to use the Google Books API. I have already registered with Google De
 - As a user I should be able to see when I started reading a book and when I finished reading a book, and sort my books chronologically.
 - As a user I should be able to sort books by rating.
 
-
+## Loom Walkthrough of wireframes
+https://www.loom.com/share/3118051cb37e4b7691e2002aa74400c4
 
 
 ## Wireframes
