@@ -11,7 +11,8 @@ https://www.getpostman.com/collections/3688ac192a1122e6cda7
 I'm hoping to use the Google Books API. I have already registered with Google Developers. Here is a link to my Postman collection with the GET API calls. I've included a call that returns *all* info for a certain query, one that only returns the most relevant details about a query for a book, and one that only returns most relevent details about a query for an author. My app will still function without this API, but I believe it would greatly add to the functionality and user experience.
 
 ## Project Board & Issue Tickets
-https://github.com/katherinevfry/best-reads/issues
+- https://github.com/katherinevfry/best-reads/projects/1
+- https://github.com/katherinevfry/best-reads/issues
 
 
 ### Sample response
