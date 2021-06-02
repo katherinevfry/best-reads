@@ -69,10 +69,14 @@ I'm hoping to use the Google Books API. I have already registered with Google De
    
 - bookshelves view
    ![bookshelves](https://i.imgur.com/nyIJIdM.png)
+ - single bookshelf view 
+ ![single bookshelf view](https://i.imgur.com/q46z4j4.png)
+ - single book bookshelf view
+  ![singlebook bookshelf view](https://i.imgur.com/OciS3vO.png)
 - books view
-    ![books](https://i.imgur.com/JTXjK74.png)
+    ![books](https://i.imgur.com/Jw3Ioxz.png)
 - single book
-   ![single book](https://i.imgur.com/04eNRXt.png)
+   ![single book](https://i.imgur.com/2lUDkTk.png)
 
 ## LINK TO COMPLETED BIO PROJECT
 https://github.com/katherinevfry/react-personal-bio
