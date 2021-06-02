@@ -1,7 +1,7 @@
 # BestReads
 
 ## ERD
-![ERD](https://i.imgur.com/TBW31bP.png)
+![ERD](https://i.imgur.com/QJ7Ok3V.png)
 
 One user can have many bookshelves and many books. This is a one-to-many relationship. A user's book can be on multiple of the user's bookshelves (e.g., _Ender's Game_ could be on a Read bookshelf and also a Favorites bookshelf and maybe a Sci-Fi bookshelf.) Because of this, I believe I'm going to need a join table between bookshelves and books, since that would be a many-to-many relationship. I don't believe I need any join tables between the user and her bookshelves or books, because each shelf is unique as is each book post. Neither bookshelves nor books will be collaborative between users.
 
