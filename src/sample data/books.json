@@ -1,0 +1,47 @@
+{
+  "-MbSDaQuAS6zdrbMOmnc": {
+    "firebaseKey": "-MbSDaQuAS6zdrbMOmnc",
+    "title": "Cut and Run (Inferno in diretta)",
+    "author": "Peg Olden",
+    "rating": 5,
+    "review": "installation",
+    "public": false,
+    "coverUrl": "http://dummyimage.com/191x100.png/5fa2dd/ffffff"
+  },
+  "-MbSDaQv1ld_HdBu1LXm": {
+    "firebaseKey": "-MbSDaQv1ld_HdBu1LXm",
+    "title": "First Daughter",
+    "author": "Dorey Rebbeck",
+    "rating": 4,
+    "review": "portal",
+    "public": false,
+    "coverUrl": "http://dummyimage.com/209x100.png/5fa2dd/ffffff"
+  },
+  "-MbSDaQxMJBKJ7THb0lH": {
+    "firebaseKey": "-MbSDaQxMJBKJ7THb0lH",
+    "title": "Annabel Takes a Tour (Annabel Takes a Trip)",
+    "author": "Fanya Dinley",
+    "rating": 3,
+    "review": "multimedia",
+    "public": true,
+    "coverUrl": "http://dummyimage.com/159x100.png/ff4444/ffffff"
+  },
+  "-MbSDaQyZB7UYudCJKEP": {
+    "firebaseKey": "-MbSDaQyZB7UYudCJKEP",
+    "title": "Behaving Badly",
+    "author": "Justin Seldner",
+    "rating": 4,
+    "review": "pricing structure",
+    "public": false,
+    "coverUrl": "http://dummyimage.com/143x100.png/ff4444/ffffff"
+  },
+  "-MbSDaR-t1PkqnohWaoO": {
+    "firebaseKey": "-MbSDaR-t1PkqnohWaoO",
+    "title": "Dude, Where's My Car?",
+    "author": "Alistair Shortan",
+    "rating": 1,
+    "review": "Fully-configurable",
+    "public": false,
+    "coverUrl": "http://dummyimage.com/162x100.png/ff4444/ffffff"
+  }
+}
