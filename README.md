@@ -1,7 +1,7 @@
 # BestReads
 
 ## ERD
-![ERD](https://i.imgur.com/QJ7Ok3V.png)
+https://dbdiagram.io/d/60ad30d0b29a09603d167b7a
 
 One user can have many bookshelves and many books. This is a one-to-many relationship. A user's book can be on multiple of the user's bookshelves (e.g., _Ender's Game_ could be on a Read bookshelf and also a Favorites bookshelf and maybe a Sci-Fi bookshelf.) Because of this, I believe I'm going to need a join table between bookshelves and books, since that would be a many-to-many relationship. I don't believe I need any join tables between the user and her bookshelves or books, because each shelf is unique as is each book post. Neither bookshelves nor books will be collaborative between users.
 
@@ -79,6 +79,7 @@ I'm hoping to use the Google Books API. I have already registered with Google De
 - As a user I should be able to see all my books on one view.
 - As a user I should be able to review a book.
 - As a user I should be able to rate a book on a scale of 1-5.
+- As a user I should be able to sort books by rating.
 - As a user I should only see my own books and bookshelves.
 - As a user I should be able to change which Bookshelf a book is on.
 - As a user I should be able to search for a book using the Google Books API.
@@ -89,8 +90,8 @@ I'm hoping to use the Google Books API. I have already registered with Google De
 
  ### Potential Stretch Goals
 - As a user, I should be able to externally share my review of a book.
-- As a user I should be able to see when I started reading a book and when I finished reading a book, and sort my books chronologically.
-- As a user I should be able to sort books by rating.
+- As a user I should see a button that allows me to mark a book as currently reading. This will add a time stamp. When I finish reading, I should be able to click another button that marks the book as being finished reading. I should be able to see how long it took me to read the book displayed on that book's card.
+
 
 ## Loom Walkthrough of wireframes
 https://www.loom.com/share/3118051cb37e4b7691e2002aa74400c4
