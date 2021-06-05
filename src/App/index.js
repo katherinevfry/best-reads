@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import './App.scss';
 
 function App() {
