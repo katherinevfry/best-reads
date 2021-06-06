@@ -1,17 +1,12 @@
 import React from 'react';
-// import { mergeBooksAndShelves, getSingleBookshelfBooks } from '../helpers/data/bookshelfBooksData';
-// import { getSingleBook } from '../helpers/data/bookData';
-// import { getSingleBookshelfBooks } from '../helpers/data/bookshelfBooksData';
-// import { mergeBooksAndShelves } from '../helpers/data/bookshelfBooksData';
-// import { getBookshelves } from '../helpers/data/bookshelvesData';
-// import { getBooks } from '../helpers/data/bookData';
+import { mergeBooksAndSingleShelf } from '../helpers/data/bookshelfBooksData';
 
-// const grabData = () => {
-//   getSingleBookshelfBooks('-MbSCKisDyhUZ0W6VEKB').then((resp) => console.warn(resp));
-//   mergeBooksAndShelves('-MbSCKisDyhUZ0W6VEKB').then((resp) => console.warn(resp));
-// };
+const grabData = () => {
+  // mergeBooksAndShelves().then((resp) => console.warn(resp));
+  mergeBooksAndSingleShelf('-MbSCKisDyhUZ0W6VEKB').then((resp) => console.warn(resp));
+};
 
-// grabData();
+grabData();
 
 export default function Home() {
   return (

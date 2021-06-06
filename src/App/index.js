@@ -6,6 +6,14 @@ import NavBar from '../components/NavBar';
 import './App.scss';
 import Routes from '../helpers/Routes';
 
+// getUserbyUid(authed.uid).then((response) => {
+//   if (Object.values(response.data).length === 0) {
+//     createUser(userInfoObj).then((resp) => setUser(resp));
+//   } else {
+//     setUser(userInfoObj);
+//   }
+// });
+
 function App() {
   const [user, setUser] = useState(null);
 

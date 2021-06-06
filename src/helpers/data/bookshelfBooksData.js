@@ -1,6 +1,7 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
-// import { getBookshelves } from './bookshelvesData';
+import { getBooks } from './bookData';
+import { getBookshelves } from './bookshelvesData';
 
 const dbUrl = firebaseConfig.databaseURL;
 
@@ -27,33 +28,43 @@ const createBookshelfBooks = (bookshelfBookObject) => new Promise((resolve, reje
     }).catch((error) => reject(error));
 });
 
-// const updateBookshelfBooks = (firebaseKey, bookshelfBookObj) => new Promise((resolve, reject) => {
-//   axios.patch(`${dbUrl}/bookshelf-books.json?orderBy="bookshelfId"&equalTo="${firebaseKey}"`, bookshelfBookObj)
-//     .then(() => getBookshelfBooks()).then((response) => resolve(response))
-//     .catch((error) => reject(error));
-// });
-
 const deleteBookshelfRel = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/bookshelf-books/${firebaseKey}.json`)
     .then((response) => resolve(response))
     .catch((error) => reject(error));
 });
 
-// const mergeBooksAndShelves = (bookshelfId) => new Promise((resolve, reject) => {
-//   Promise.all([getBookshelves(), getSingleBookshelfBooks(bookshelfId)])
-//     .then(([bookshelves, bookshelfBooks]) => {
-//       const allBookshelvesArray = bookshelves.map((bookshelf) => {
-//         const bookshelfRelsArray = bookshelfBooks.filter((bk) => bk.bookshelfId === bookshelf.firebaseKey);
-//         return { ...bookshelf, books: bookshelfRelsArray };
-//       });
-//       resolve(allBookshelvesArray);
-//     }).catch((error) => reject(error));
-// });
+const mergeBooksAndShelves = () => new Promise((resolve, reject) => {
+  Promise.all([getBooks(), getBookshelves(), getBookshelfBooks()])
+    .then(([books, bookshelves, bookshelfBooks]) => {
+      console.warn(books, bookshelves, bookshelfBooks);
+      const allBookshelfInfoArray = bookshelves.map((bookshelf) => {
+        const bookshelfRelArray = bookshelfBooks.filter((bb) => bb.bookshelfId === bookshelf.firebaseKey);
+
+        const bookInfoArray = bookshelfRelArray.map((bookshelfRel) => books.find((book) => book.firebaseKey === bookshelfRel.bookId));
+
+        return { ...bookshelf, books: bookInfoArray };
+      });
+
+      resolve(allBookshelfInfoArray);
+    }).catch((error) => reject(error));
+});
+
+const mergeBooksAndSingleShelf = (firebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getBooks(), getBookshelfBooks()])
+    .then(([books, bookshelfBooks]) => {
+      const bookshelfRelArray = bookshelfBooks.filter((bb) => bb.bookshelfId === firebaseKey);
+      const bookInfoArray = bookshelfRelArray.map((bookshelfRel) => books.find((book) => book.firebaseKey === bookshelfRel.bookId));
+
+      resolve(bookInfoArray);
+    }).catch((error) => reject(error));
+});
 
 export {
   getBookshelfBooks,
   createBookshelfBooks,
   deleteBookshelfRel,
-  // mergeBooksAndShelves,
-  getSingleBookshelfBooks
+  getSingleBookshelfBooks,
+  mergeBooksAndShelves,
+  mergeBooksAndSingleShelf
 };
