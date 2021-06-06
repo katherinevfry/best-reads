@@ -5,6 +5,7 @@ import 'tailwindcss/tailwind.css';
 import NavBar from '../components/NavBar';
 import './App.scss';
 import Routes from '../helpers/Routes';
+import { getUserbyUid, createUser } from '../helpers/data/userData';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -18,7 +19,13 @@ function App() {
           uid: authed.uid,
           userName: authed.email.split('@')[0]
         };
-        setUser(userInfoObj);
+        getUserbyUid(authed.uid).then((response) => {
+          if (Object.values(response.data).length === 0) {
+            createUser(userInfoObj).then((resp) => setUser(resp));
+          } else {
+            setUser(userInfoObj);
+          }
+        });
       } else if (user || user === null) {
         setUser(false);
       }
@@ -29,7 +36,7 @@ function App() {
     <div>
       <Router>
         <NavBar user={user}/>
-        <Routes />
+        <Routes user={user}/>
       </Router>
     </div>
   );
