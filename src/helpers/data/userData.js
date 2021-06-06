@@ -13,7 +13,7 @@ const createUser = (userObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/users.json`, userObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
-      axios.patch(`${dbUrl}/users/${response.data.name},json`, body)
+      axios.patch(`${dbUrl}/users/${response.data.name}.json`, body)
         .then(() => {
           getUsers().then((usersArray) => resolve(usersArray));
         });
