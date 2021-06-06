@@ -13,7 +13,7 @@ const createBook = (bookObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/books.json`, bookObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
-      axios.patch(`${dbUrl}/books/${response.data.name},json`, body)
+      axios.patch(`${dbUrl}/books/${response.data.name}.json`, body)
         .then(() => {
           getBooks().then((booksArray) => resolve(booksArray));
         });
