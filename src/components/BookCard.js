@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { deleteBook } from '../helpers/data/bookData';
 
-export default function BookCard({ ...book }) {
+export default function BookCard({ setBooks, ...book }) {
+  const handleClick = () => {
+    deleteBook(book.firebaseKey).then(setBooks);
+  };
   return (
     <>
       <div className='boookCard rounded bg-white w-1/3 shadow-md m-3'>
@@ -13,6 +17,14 @@ export default function BookCard({ ...book }) {
             <p>{book.rating}/5</p>
             <p>{book.review}</p>
           </div>
+          <div className='buttonDiv px-6 py-4'>
+            <button type='button'
+            className='bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full'
+            onClick={handleClick}
+            >
+              delete
+            </button>
+          </div>
         </div>
       </div>
     </>
@@ -20,5 +32,6 @@ export default function BookCard({ ...book }) {
 }
 
 BookCard.propTypes = {
-  book: PropTypes.object
+  book: PropTypes.object,
+  setBooks: PropTypes.func
 };
