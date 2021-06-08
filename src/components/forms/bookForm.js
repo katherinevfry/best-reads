@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Input, Label, Form
+  Button, Input, Label, Form, FormGroup
 } from 'reactstrap';
 import { createBook, updateBook } from '../../helpers/data/bookData';
 
@@ -74,14 +74,39 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
            >
            </Input>
 
-           <Label>rating</Label>
-           <Input name='rating'
-           type='number'
-           value={book.rating}
-           onChange={handleInputChange}
-           >
-           </Input>
-           <br/>
+           <FormGroup tag="fieldset">
+            <legend>Rating</legend>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="rating" value='1' checked={book.rating === '1'} onChange={handleInputChange} />
+                  1
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="rating" value='2' checked={book.rating === '2'} onChange={handleInputChange} />
+                  2
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="rating" value='3' checked={book.rating === '3'} onChange={handleInputChange} />
+                  3
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="rating" value='4' checked={book.rating === '4'} onChange={handleInputChange} />
+                  4
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="rating" value='5' checked={book.rating === '5'} onChange={handleInputChange} />
+                  5
+                </Label>
+              </FormGroup>
+            </FormGroup>
 
            <Label>Public</Label>
            <Input name='public'
