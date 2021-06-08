@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BookshelfCard from '../components/forms/BookshelfCard';
+import BookshelfForm from '../components/forms/BookshelfForm';
 
 export default function BookshelvesView({ bookshelves, setBookshelves, user }) {
   console.warn(user, setBookshelves);
   return (
     <div>
       <h1>this is the bookshelves view</h1>
+      <BookshelfForm setBookshelves={setBookshelves} user={user}/>
       {bookshelves.map((bookshelf) => (
         <BookshelfCard key={bookshelf.firebaseKey}
         {...bookshelf}

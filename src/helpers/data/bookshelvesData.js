@@ -13,7 +13,7 @@ const createBookshelf = (bookshelfObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/bookshelves.json`, bookshelfObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
-      axios.patch(`${dbUrl}/bookshelves/${response.data.name},json`, body)
+      axios.patch(`${dbUrl}/bookshelves/${response.data.name}.json`, body)
         .then(() => {
           getBookshelves().then((bookshelfArray) => resolve(bookshelfArray));
         });
