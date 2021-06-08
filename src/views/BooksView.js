@@ -21,6 +21,7 @@ export default function BooksView({ books, setBooks, user }) {
       {books.map((book) => (
         <BookCard
         key={book.firebaseKey}
+        user={user}
         setBooks={setBooks}
         {...book}
         />
