@@ -21,7 +21,9 @@ PrivateRoute.propTypes = {
   user: PropTypes.any
 };
 
-export default function Routes({ user, books, setBooks }) {
+export default function Routes({
+  user, books, setBooks, bookshelves, setBookshelves
+}) {
   return (
     <div>
       <Switch>
@@ -34,7 +36,7 @@ export default function Routes({ user, books, setBooks }) {
         exact
         path='/bookshelves'
         user={user}
-        component={BookshelvesView}
+        component={() => <BookshelvesView bookshelves={bookshelves} setBookshelves={setBookshelves}user={user} />}
         />
         <PrivateRoute
         exact
@@ -66,5 +68,7 @@ export default function Routes({ user, books, setBooks }) {
 Routes.propTypes = {
   user: PropTypes.any,
   books: PropTypes.array,
-  setBooks: PropTypes.func
+  setBooks: PropTypes.func,
+  bookshelves: PropTypes.array,
+  setBookshelves: PropTypes.func
 };
