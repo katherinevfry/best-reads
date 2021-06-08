@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import {
   Button, Input, Label, Form
 } from 'reactstrap';
-import { createBook } from '../../helpers/data/bookData';
+import { createBook, updateBook } from '../../helpers/data/bookData';
 
-export default function BookForm({ setBooks, user }) {
+export default function BookForm({ setBooks, user, ...bookObj }) {
   const [book, setBook] = useState({
-    public: false,
-    uid: user.uid
+    title: bookObj?.title || '',
+    author: bookObj?.author || '',
+    imageUrl: bookObj?.imageUrl || '',
+    rating: bookObj?.rating || '',
+    review: bookObj?.review || '',
+    firebaseKey: bookObj?.firebaseKey || null,
+    uid: user.uid,
+    public: bookObj?.public || false
   });
 
   const handleInputChange = (e) => {
@@ -20,7 +26,11 @@ export default function BookForm({ setBooks, user }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createBook(book).then((booksArray) => setBooks(booksArray));
+    if (book.firebaseKey) {
+      updateBook(book.firebaseKey, book).then((booksArray) => setBooks(booksArray));
+    } else {
+      createBook(book).then((booksArray) => setBooks(booksArray));
+    }
   };
 
   return (
@@ -56,15 +66,6 @@ export default function BookForm({ setBooks, user }) {
            </Input>
            <br/>
 
-           <Label>Public</Label>
-           <Input name='public'
-           type='checkbox'
-           checked={book.public}
-           onChange={handleInputChange}
-           >
-           </Input>
-           <br/>
-
            <Label>review</Label>
            <Input name='review'
            type='text'
@@ -81,6 +82,15 @@ export default function BookForm({ setBooks, user }) {
            >
            </Input>
            <br/>
+
+           <Label>Public</Label>
+           <Input name='public'
+           type='checkbox'
+           checked={book.public}
+           onChange={handleInputChange}
+           >
+           </Input>
+           <br/>
            <Button id='submitBtn' type='submit'>Submit</Button>
       </Form>
     </div>
@@ -89,5 +99,5 @@ export default function BookForm({ setBooks, user }) {
 
 BookForm.propTypes = {
   setBooks: PropTypes.func,
-  user: PropTypes.any
+  user: PropTypes.any,
 };

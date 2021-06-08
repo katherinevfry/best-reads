@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { deleteBook } from '../helpers/data/bookData';
+import BookForm from './forms/bookForm';
 
-export default function BookCard({ setBooks, ...book }) {
-  const handleClick = () => {
-    deleteBook(book.firebaseKey).then(setBooks);
+export default function BookCard({ setBooks, user, ...book }) {
+  const [editing, setEditing] = useState(false);
+
+  const handleClick = (type) => {
+    switch (type) {
+      case 'delete':
+        deleteBook(book.firebaseKey).then(setBooks);
+        break;
+      case 'edit':
+        setEditing((prevState) => !prevState);
+        break;
+      default:
+        console.warn('nothing here');
+    }
   };
   return (
     <>
@@ -17,14 +29,27 @@ export default function BookCard({ setBooks, ...book }) {
             <p>{book.rating}/5</p>
             <p>{book.review}</p>
           </div>
-          <div className='buttonDiv px-6 py-4'>
+          <div className='buttonDiv px-6 py-4 flex-row'>
             <button type='button'
             className='bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full'
-            onClick={handleClick}
+            onClick={() => handleClick('delete')}
             >
               delete
             </button>
+            <button type='button'
+            className='bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full'
+            onClick={() => handleClick('edit')}
+            >
+              {editing ? 'close form' : 'edit book'}
+            </button>
           </div>
+          {
+            editing && <BookForm
+            setBooks={setBooks}
+            user={user}
+            {...book}
+            />
+          }
         </div>
       </div>
     </>
@@ -33,5 +58,6 @@ export default function BookCard({ setBooks, ...book }) {
 
 BookCard.propTypes = {
   book: PropTypes.object,
+  user: PropTypes.any,
   setBooks: PropTypes.func
 };
