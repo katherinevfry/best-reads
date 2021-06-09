@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-// import TestBookCard from '../components/TestBookCard';
-import BookCard from '../components/BookCard';
+import BookshelfBookCard from '../components/BookshelfBookCard';
+// import BookCard from '../components/BookCard';
 import { mergeBooksAndSingleShelf } from '../helpers/data/bookshelfBooksData';
 
-export default function SingleBookshelf({ user, setBooks }) {
+export default function SingleBookshelf({ user, setBooks, setBookshelves }) {
   const [bookshelfBooks, setBookshelfBooks] = useState([]);
   const { firebaseKey } = useParams();
   useEffect(() => {
@@ -17,8 +17,10 @@ export default function SingleBookshelf({ user, setBooks }) {
       <h1>katy</h1>
       <div>
       {bookshelfBooks.map((book) => (
-        <BookCard key={book.firebaseKey}
+        <BookshelfBookCard key={book.firebaseKey}
         user={user}
+        setBookshelfBooks={setBookshelfBooks}
+        setBookshelves={setBookshelves}
         setBooks={setBooks}
         {...book}
         />
@@ -30,5 +32,6 @@ export default function SingleBookshelf({ user, setBooks }) {
 
 SingleBookshelf.propTypes = {
   user: PropTypes.any,
-  setBooks: PropTypes.func
+  setBooks: PropTypes.func,
+  setBookshelves: PropTypes.func
 };

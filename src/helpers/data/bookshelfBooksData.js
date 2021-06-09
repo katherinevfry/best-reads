@@ -17,6 +17,12 @@ const getSingleBookshelfBooks = (bookshelfId) => new Promise((resolve, reject) =
     .catch((error) => reject(error));
 });
 
+const getSingleBookshelfBooksByBookId = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/bookshelf-books.json?orderBy="bookId"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
 const createBookshelfBooks = (bookshelfBookObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/bookshelf-books.json`, bookshelfBookObject)
     .then((response) => {
@@ -65,6 +71,7 @@ export {
   createBookshelfBooks,
   deleteBookshelfRel,
   getSingleBookshelfBooks,
+  getSingleBookshelfBooksByBookId,
   mergeBooksAndShelves,
   mergeBooksAndSingleShelf
 };
