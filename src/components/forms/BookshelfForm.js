@@ -3,14 +3,22 @@ import PropTypes from 'prop-types';
 import {
   Form, Input, Label, Button
 } from 'reactstrap';
-import { createBookshelf } from '../../helpers/data/bookshelvesData';
+import { createBookshelf, updateBookshelf } from '../../helpers/data/bookshelvesData';
 
-export default function BookshelfForm({ setBookshelves }) {
-  const [bookshelf, setBookshelf] = useState({});
+export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj }) {
+  const [bookshelf, setBookshelf] = useState({
+    title: bookshelfObj?.title || '',
+    description: bookshelfObj?.description || '',
+    firebaseKey: bookshelfObj?.firebaseKey || null
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createBookshelf(bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
+    if (bookshelf.firebaseKey) {
+      updateBookshelf(bookshelf.firebaseKey, bookshelf).then(setBookshelves);
+    } else {
+      createBookshelf(bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
+    }
   };
 
   const handleInputChange = (e) => {
@@ -50,5 +58,6 @@ export default function BookshelfForm({ setBookshelves }) {
 }
 
 BookshelfForm.propTypes = {
-  setBookshelves: PropTypes.func
+  setBookshelves: PropTypes.func,
+  user: PropTypes.any
 };
