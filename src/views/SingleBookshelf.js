@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import BookshelfBookCard from '../components/BookshelfBookCard';
-// import BookCard from '../components/BookCard';
 import { mergeBooksAndSingleShelf } from '../helpers/data/bookshelfBooksData';
 
-export default function SingleBookshelf({ user, setBooks, setBookshelves }) {
+export default function SingleBookshelf({ user, setBooks }) {
   const [bookshelfBooks, setBookshelfBooks] = useState([]);
   const { firebaseKey } = useParams();
   useEffect(() => {
     mergeBooksAndSingleShelf(firebaseKey).then(setBookshelfBooks);
-  }, []);
+  }, [bookshelfBooks.length]);
 
   return (
     <div>
@@ -20,7 +19,6 @@ export default function SingleBookshelf({ user, setBooks, setBookshelves }) {
         <BookshelfBookCard key={book.firebaseKey}
         user={user}
         setBookshelfBooks={setBookshelfBooks}
-        setBookshelves={setBookshelves}
         setBooks={setBooks}
         {...book}
         />
@@ -33,5 +31,4 @@ export default function SingleBookshelf({ user, setBooks, setBookshelves }) {
 SingleBookshelf.propTypes = {
   user: PropTypes.any,
   setBooks: PropTypes.func,
-  setBookshelves: PropTypes.func
 };

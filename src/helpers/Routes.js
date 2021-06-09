@@ -43,7 +43,7 @@ export default function Routes({
         exact
         path='/bookshelves/:firebaseKey'
         user={user}
-        component={() => <SingleBookshelf user={user} setBooks={setBooks} setBookshelves={setBookshelves}/>}
+        component={() => <SingleBookshelf user={user} setBooks={setBooks} />}
         />
         <PrivateRoute
         exact

@@ -5,7 +5,7 @@ import { deleteBookshelfRel, getSingleBookshelfBooksByBookId, mergeBooksAndSingl
 import BookForm from './forms/bookForm';
 
 export default function BookshelfBookCard({
-  setBooks, setBookshelves, setBookshelfBooks, user, ...book
+  setBooks, setBookshelfBooks, user, ...book
 }) {
   const [editing, setEditing] = useState(false);
   const { bookshelfId } = useParams();
@@ -15,7 +15,7 @@ export default function BookshelfBookCard({
       case 'delete':
         getSingleBookshelfBooksByBookId(book.firebaseKey)
           .then((resp) => deleteBookshelfRel(resp[0].firebaseKey)
-            .then(setBookshelves)
+            .then()
             .then(mergeBooksAndSingleShelf(bookshelfId)
               .then(setBookshelfBooks)));
         break;
@@ -66,5 +66,4 @@ BookshelfBookCard.propTypes = {
   user: PropTypes.any,
   setBooks: PropTypes.func,
   setBookshelfBooks: PropTypes.func,
-  setBookshelves: PropTypes.func
 };
