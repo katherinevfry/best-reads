@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { deleteBookshelf } from '../helpers/data/bookshelvesData';
 import BookshelfForm from './forms/BookshelfForm';
 
 export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
   const [editing, setEditing] = useState(false);
+  const history = useHistory();
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
@@ -12,6 +14,9 @@ export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
         break;
       case 'edit':
         setEditing((prevState) => !prevState);
+        break;
+      case 'book':
+        history.push(`/bookshelves/${bookshelf.firebaseKey}`);
         break;
       default:
         console.warn('nothing here');
@@ -23,6 +28,12 @@ export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
       <h4 className='text-center'>{bookshelf.title}</h4>
       <p className='text-center'>{bookshelf.description}</p>
       <div>
+      <button type='button'
+            className='bg-blue-400 hover:bg-blue-500 text-white py-2 px-3 rounded-full'
+            onClick={() => handleClick('book')}
+            >
+              see books
+          </button>
         <button type='button'
             className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full'
             onClick={() => handleClick('delete')}

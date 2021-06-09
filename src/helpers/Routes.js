@@ -7,6 +7,7 @@ import Explore from '../views/Explore';
 import Home from '../views/Home';
 import NotFound from '../views/NotFound';
 import Search from '../views/Search';
+import SingleBookshelf from '../views/SingleBookshelf';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (taco) => (user
@@ -37,6 +38,12 @@ export default function Routes({
         path='/bookshelves'
         user={user}
         component={() => <BookshelvesView bookshelves={bookshelves} setBookshelves={setBookshelves}user={user} />}
+        />
+        <PrivateRoute
+        exact
+        path='/bookshelves/:firebaseKey'
+        user={user}
+        component={() => <SingleBookshelf user={user} setBooks={setBooks}/>}
         />
         <PrivateRoute
         exact
