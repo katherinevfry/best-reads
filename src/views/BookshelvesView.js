@@ -9,11 +9,14 @@ export default function BookshelvesView({ bookshelves, setBookshelves, user }) {
     <div>
       <h1>this is the bookshelves view</h1>
       <BookshelfForm setBookshelves={setBookshelves} user={user}/>
+      <div className='flex flex-row flex-wrap'>
       {bookshelves.map((bookshelf) => (
         <BookshelfCard key={bookshelf.firebaseKey}
+        setBookshelves={setBookshelves}
         {...bookshelf}
         />
       ))}
+      </div>
     </div>
   );
 }
