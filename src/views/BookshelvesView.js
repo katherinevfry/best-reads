@@ -4,7 +4,6 @@ import BookshelfForm from '../components/forms/BookshelfForm';
 import BookshelfCard from '../components/BookshelfCard';
 
 export default function BookshelvesView({ bookshelves, setBookshelves, user }) {
-  console.warn(user, setBookshelves);
   return (
     <div>
       <h1>this is the bookshelves view</h1>
