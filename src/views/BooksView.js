@@ -16,7 +16,7 @@ export default function BooksView({ books, setBooks, user }) {
   const seeForm = () => {
     setCreating((prevState) => !prevState);
   };
-  console.warn(books);
+
   const sortBooks = () => {
     const sortedBook = [...books];
     sortedBook.sort((a, b) => {
