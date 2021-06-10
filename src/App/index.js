@@ -31,7 +31,13 @@ function App() {
           }
         });
         getBooks().then((booksArray) => setBooks(booksArray));
-        getBookshelves().then((bookshelvesArray) => setBookshelves(bookshelvesArray));
+        getBookshelves().then((bookshelvesArray) => {
+          if (bookshelvesArray !== null) {
+            setBookshelves(bookshelvesArray);
+          } else {
+            console.warn('help');
+          }
+        });
       } else if (user || user === null) {
         setUser(false);
       }

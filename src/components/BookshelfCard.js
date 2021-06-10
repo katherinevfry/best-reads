@@ -3,14 +3,28 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { deleteBookshelf } from '../helpers/data/bookshelvesData';
 import BookshelfForm from './forms/BookshelfForm';
+import { deleteBookshelfRel, getSingleBookshelfBooks } from '../helpers/data/bookshelfBooksData';
 
 export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
   const [editing, setEditing] = useState(false);
   const history = useHistory();
+
+  const getAllRels = (taco) => {
+    taco.forEach((i) => {
+      deleteBookshelfRel(i.firebaseKey).then();
+    });
+    deleteBookshelf(bookshelf.firebaseKey).then(setBookshelves);
+  };
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deleteBookshelf(bookshelf.firebaseKey).then(setBookshelves);
+        getSingleBookshelfBooks(bookshelf.firebaseKey).then((resp) => {
+          if (resp.length === 0) {
+            deleteBookshelf(bookshelf.firebaseKey).then(setBookshelves);
+          } else {
+            getAllRels(resp);
+          }
+        });
         break;
       case 'edit':
         setEditing((prevState) => !prevState);

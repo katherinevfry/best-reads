@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { deleteBook } from '../helpers/data/bookData';
+import { getSingleBookshelfBooksByBookId, deleteBookshelfRel } from '../helpers/data/bookshelfBooksData';
 import BookForm from './forms/bookForm';
 
 export default function BookCard({ setBooks, user, ...book }) {
   const [editing, setEditing] = useState(false);
+  const getAllRels = (taco) => {
+    taco.forEach((i) => {
+      deleteBookshelfRel(i.firebaseKey).then();
+    });
+    deleteBook(book.firebaseKey).then(setBooks);
+  };
 
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deleteBook(book.firebaseKey).then(setBooks);
+        getSingleBookshelfBooksByBookId(book.firebaseKey)
+          .then((resp) => {
+            if (resp.length === 0) {
+              deleteBook(book.firebaseKey).then(setBooks);
+            } else {
+              getAllRels(resp);
+            }
+          });
         break;
       case 'edit':
         setEditing((prevState) => !prevState);
