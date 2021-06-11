@@ -5,8 +5,13 @@ const dbUrl = firebaseConfig.databaseURL;
 
 const getBookshelves = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/bookshelves.json`)
-    .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error));
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    }).catch((error) => reject(error));
 });
 
 const createBookshelf = (bookshelfObject) => new Promise((resolve, reject) => {
