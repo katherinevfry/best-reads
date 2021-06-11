@@ -7,8 +7,13 @@ const dbUrl = firebaseConfig.databaseURL;
 
 const getBookshelfBooks = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/bookshelf-books.json`)
-    .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error));
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    }).catch((error) => reject(error));
 });
 
 const getSingleBookshelfBooks = (bookshelfId) => new Promise((resolve, reject) => {
@@ -19,6 +24,12 @@ const getSingleBookshelfBooks = (bookshelfId) => new Promise((resolve, reject) =
 
 const getSingleBookshelfBooksByBookId = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/bookshelf-books.json?orderBy="bookId"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+const getSingleBookshelfBookRel = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/bookshelf-books/${firebaseKey}.json`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
@@ -72,6 +83,7 @@ export {
   deleteBookshelfRel,
   getSingleBookshelfBooks,
   getSingleBookshelfBooksByBookId,
+  getSingleBookshelfBookRel,
   mergeBooksAndShelves,
   mergeBooksAndSingleShelf
 };

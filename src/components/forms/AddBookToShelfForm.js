@@ -32,8 +32,10 @@ export default function AddBookToShelfForm({ books, setBookshelfBooks }) {
            <Input name='bookId'
            type='select'
            value={bookshelfBook.bookId}
+           placeholder="select a book"
            onChange={handleInputChange}
            >
+          <option value=''>Select a Book</option>
           {books?.map((book) => (
             <option key={book.firebaseKey} value={book.firebaseKey}>
               {book.title} - {book.author}
