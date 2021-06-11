@@ -4,7 +4,7 @@ import {
   Button, Form, Input, Label
 } from 'reactstrap';
 import { useParams } from 'react-router-dom';
-import { createBookshelfBooks } from '../../helpers/data/bookshelfBooksData';
+import { createBookshelfBooks, getSingleBookshelfBooksByBookId } from '../../helpers/data/bookshelfBooksData';
 
 export default function AddBookToShelfForm({ books, setBookshelfBooks }) {
   const { firebaseKey } = useParams();
@@ -13,9 +13,20 @@ export default function AddBookToShelfForm({ books, setBookshelfBooks }) {
     bookId: ''
   });
 
+  const bookChecker = () => {
+    getSingleBookshelfBooksByBookId(bookshelfBook.bookId).then((resp) => {
+      const result = resp.filter((i) => i.bookshelfId === firebaseKey);
+      if (result.length >= 1) {
+        console.warn('already added');
+      } else {
+        createBookshelfBooks(bookshelfBook).then(setBookshelfBooks);
+      }
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    createBookshelfBooks(bookshelfBook).then(setBookshelfBooks);
+    bookChecker();
   };
 
   const handleInputChange = (e) => {
