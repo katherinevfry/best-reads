@@ -16,7 +16,7 @@ export default function BookshelfBookCard({
         getSingleBookshelfBooksByBookId(book.firebaseKey)
           .then((resp) => deleteBookshelfRel(resp[0].firebaseKey)
             .then()
-            .then(mergeBooksAndSingleShelf(bookshelfId)
+            .then(mergeBooksAndSingleShelf(user.uid, bookshelfId)
               .then(setBookshelfBooks)));
         break;
       case 'edit':

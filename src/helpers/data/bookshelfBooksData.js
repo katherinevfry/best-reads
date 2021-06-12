@@ -51,8 +51,8 @@ const deleteBookshelfRel = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const mergeBooksAndShelves = () => new Promise((resolve, reject) => {
-  Promise.all([getBooks(), getBookshelves(), getBookshelfBooks()])
+const mergeBooksAndShelves = (uid) => new Promise((resolve, reject) => {
+  Promise.all([getBooks(uid), getBookshelves(uid), getBookshelfBooks()])
     .then(([books, bookshelves, bookshelfBooks]) => {
       console.warn(books, bookshelves, bookshelfBooks);
       const allBookshelfInfoArray = bookshelves.map((bookshelf) => {
@@ -67,8 +67,8 @@ const mergeBooksAndShelves = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const mergeBooksAndSingleShelf = (firebaseKey) => new Promise((resolve, reject) => {
-  Promise.all([getBooks(), getBookshelfBooks()])
+const mergeBooksAndSingleShelf = (uid, firebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getBooks(uid), getBookshelfBooks()])
     .then(([books, bookshelfBooks]) => {
       const bookshelfRelArray = bookshelfBooks.filter((bb) => bb.bookshelfId === firebaseKey);
       const bookInfoArray = bookshelfRelArray.map((bookshelfRel) => books.find((book) => book.firebaseKey === bookshelfRel.bookId));

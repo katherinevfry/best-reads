@@ -30,8 +30,8 @@ function App() {
             setUser(userInfoObj);
           }
         });
-        getBooks().then((booksArray) => setBooks(booksArray));
-        getBookshelves().then((bookshelvesArray) => {
+        getBooks(authed.uid).then((booksArray) => setBooks(booksArray));
+        getBookshelves(authed.uid).then((bookshelvesArray) => {
           if (bookshelvesArray !== null) {
             setBookshelves(bookshelvesArray);
           } else {
