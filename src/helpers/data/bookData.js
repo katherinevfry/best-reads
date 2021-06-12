@@ -27,7 +27,7 @@ const createBook = (uid, bookObject) => new Promise((resolve, reject) => {
 
 const deleteBook = (uid, firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/books/${firebaseKey}.json`)
-    .then(() => getBooks().then((booksArray) => resolve(booksArray)))
+    .then(() => getBooks(uid).then((booksArray) => resolve(booksArray)))
     .catch((error) => reject(error));
 });
 
@@ -43,10 +43,22 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getPublicBooks = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/books.json?orderBy="public"&equalTo=true`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    }).catch((error) => reject(error));
+});
+
 export {
   getBooks,
   createBook,
   deleteBook,
   updateBook,
-  getSingleBook
+  getSingleBook,
+  getPublicBooks
 };

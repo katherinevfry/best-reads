@@ -19,7 +19,7 @@ export default function BookCard({ setBooks, user, ...book }) {
         getSingleBookshelfBooksByBookId(book.firebaseKey)
           .then((resp) => {
             if (resp.length === 0) {
-              deleteBook(book.firebaseKey).then(setBooks);
+              deleteBook(book.uid, book.firebaseKey).then(setBooks);
             } else {
               getAllRels(resp);
             }
