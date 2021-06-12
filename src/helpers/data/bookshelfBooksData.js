@@ -77,6 +77,16 @@ const mergeBooksAndSingleShelf = (uid, firebaseKey) => new Promise((resolve, rej
     }).catch((error) => reject(error));
 });
 
+const mergeBooksNotOnShelf = (uid, firebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getBooks(uid), getBookshelfBooks()])
+    .then(([books, bookshelfBooks]) => {
+      const bookshelfRelArray = bookshelfBooks.filter((bb) => bb.bookshelfId === firebaseKey);
+      const bookInfoArray = bookshelfRelArray.map((bookshelfRel) => books.find((book) => book.firebaseKey !== bookshelfRel.bookId));
+
+      resolve(bookInfoArray);
+    }).catch((error) => reject(error));
+});
+
 export {
   getBookshelfBooks,
   createBookshelfBooks,
@@ -85,5 +95,6 @@ export {
   getSingleBookshelfBooksByBookId,
   getSingleBookshelfBookRel,
   mergeBooksAndShelves,
-  mergeBooksAndSingleShelf
+  mergeBooksAndSingleShelf,
+  mergeBooksNotOnShelf
 };

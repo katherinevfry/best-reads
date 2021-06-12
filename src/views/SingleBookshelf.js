@@ -15,13 +15,15 @@ export default function SingleBookshelf({ user, setBooks, books }) {
   return (
     <div>
       <h1>katy</h1>
-      <AddBookToShelfForm books={books} setBookshelfBooks={setBookshelfBooks} />
+      <AddBookToShelfForm user={user} setBookshelfBooks={setBookshelfBooks} books={books} bookshelfBooks={bookshelfBooks}/>
       <div>
       {bookshelfBooks.map((book) => (
         <BookshelfBookCard key={book?.firebaseKey}
         user={user}
+        books={books}
         setBookshelfBooks={setBookshelfBooks}
         setBooks={setBooks}
+        bookshelfBooks={bookshelfBooks}
         {...book}
         />
       ))}
