@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Button
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem
 } from 'reactstrap';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { signInUser, signOutUser } from '../helpers/auth';
 
@@ -11,27 +12,33 @@ const NavBar = ({ user }) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const Logo = styled.img`
+  width: 13rem;
+  `;
+
   const authenticated = () => (
     <>
     <NavItem>
-      <Link to='/bookshelves'>Bookshelves</Link>
+      <Link className='nav-link' to='/bookshelves'>Bookshelves</Link>
     </NavItem>
     <NavItem>
-      <Link to='/books'>Books</Link>
+      <Link className='nav-link' to='/books'>Books</Link>
     </NavItem>
     <NavItem>
-      <Link to='/explore'>Explore</Link>
+      <Link className='nav-link'to='/explore'>Explore</Link>
     </NavItem>
     <NavItem>
-      <Link to='/search'>Search</Link>
+      <Link className='nav-link' to='/search'>Search</Link>
     </NavItem>
     </>
   );
 
   return (
     <div>
-      <Navbar color="faded" light expand='md'>
-        <NavbarBrand href="/">BestReads</NavbarBrand>
+      <Navbar light expand='md' className='font-serif text-xl'>
+        <NavbarBrand href="/">
+        <Logo src={'https://i.imgur.com/Al6yXby.png'}></Logo>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} className="mr-2" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -39,8 +46,8 @@ const NavBar = ({ user }) => {
             <NavItem>
             {
           user
-            ? <Button id="logOutBtn" onClick={signOutUser}>Sign Out</Button>
-            : <Button id="logInBtn" onClick={signInUser}>Sign In</Button>
+            ? <button className='bg-red-400 hover:bg-red-600 text-white py-1 px-3 rounded-full' id="logOutBtn" onClick={signOutUser}>Sign Out</button>
+            : <button className='bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full' id="logInBtn" onClick={signInUser}>Sign In</button>
         }
             </NavItem>
           </Nav>
