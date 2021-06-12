@@ -13,14 +13,14 @@ export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
     taco.forEach((i) => {
       deleteBookshelfRel(i.firebaseKey).then();
     });
-    deleteBookshelf(bookshelf.firebaseKey).then(setBookshelves);
+    deleteBookshelf(bookshelf.uid, bookshelf.firebaseKey).then(setBookshelves);
   };
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
         getSingleBookshelfBooks(bookshelf.firebaseKey).then((resp) => {
           if (resp.length === 0) {
-            deleteBookshelf(bookshelf.firebaseKey).then(setBookshelves);
+            deleteBookshelf(bookshelf.uid, bookshelf.firebaseKey).then(setBookshelves);
           } else {
             getAllRels(resp);
           }

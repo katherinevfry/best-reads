@@ -3,8 +3,8 @@ import firebaseConfig from '../apiKeys';
 
 const dbUrl = firebaseConfig.databaseURL;
 
-const getBookshelves = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/bookshelves.json`)
+const getBookshelves = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/bookshelves.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -14,26 +14,26 @@ const getBookshelves = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const createBookshelf = (bookshelfObject) => new Promise((resolve, reject) => {
+const createBookshelf = (uid, bookshelfObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/bookshelves.json`, bookshelfObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/bookshelves/${response.data.name}.json`, body)
         .then(() => {
-          getBookshelves().then((bookshelfArray) => resolve(bookshelfArray));
+          getBookshelves(uid).then((bookshelfArray) => resolve(bookshelfArray));
         });
     }).catch((error) => reject(error));
 });
 
-const deleteBookshelf = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteBookshelf = (uid, firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/bookshelves/${firebaseKey}.json`)
-    .then(() => getBookshelves().then((bookshelfArray) => resolve(bookshelfArray)))
+    .then(() => getBookshelves(uid).then((bookshelfArray) => resolve(bookshelfArray)))
     .catch((error) => reject(error));
 });
 
-const updateBookshelf = (firebaseKey, bookshelfObject) => new Promise((resolve, reject) => {
+const updateBookshelf = (uid, firebaseKey, bookshelfObject) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/bookshelves/${firebaseKey}.json`, bookshelfObject)
-    .then(() => getBookshelves()).then((bookshelfArray) => resolve(bookshelfArray))
+    .then(() => getBookshelves(uid)).then((bookshelfArray) => resolve(bookshelfArray))
     .catch((error) => reject(error));
 });
 

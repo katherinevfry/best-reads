@@ -9,15 +9,16 @@ export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj })
   const [bookshelf, setBookshelf] = useState({
     title: bookshelfObj?.title || '',
     description: bookshelfObj?.description || '',
-    firebaseKey: bookshelfObj?.firebaseKey || null
+    firebaseKey: bookshelfObj?.firebaseKey || null,
+    uid: user?.uid
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (bookshelf.firebaseKey) {
-      updateBookshelf(bookshelf.firebaseKey, bookshelf).then(setBookshelves);
+      updateBookshelf(bookshelf.uid, bookshelf.firebaseKey, bookshelf).then(setBookshelves);
     } else {
-      createBookshelf(bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
+      createBookshelf(user.uid, bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
     }
   };
 

@@ -10,7 +10,7 @@ export default function BookCard({ setBooks, user, ...book }) {
     taco.forEach((i) => {
       deleteBookshelfRel(i.firebaseKey).then();
     });
-    deleteBook(book.firebaseKey).then(setBooks);
+    deleteBook(book.uid, book.firebaseKey).then(setBooks);
   };
 
   const handleClick = (type) => {

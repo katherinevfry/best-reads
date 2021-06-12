@@ -9,7 +9,7 @@ export default function SingleBookshelf({ user, setBooks, books }) {
   const [bookshelfBooks, setBookshelfBooks] = useState([]);
   const { firebaseKey } = useParams();
   useEffect(() => {
-    mergeBooksAndSingleShelf(firebaseKey).then(setBookshelfBooks);
+    mergeBooksAndSingleShelf(user.uid, firebaseKey).then(setBookshelfBooks);
   }, [bookshelfBooks.length]);
 
   return (
