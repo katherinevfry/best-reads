@@ -61,7 +61,7 @@ export default function Routes({
         exact
         path='/search'
         user={user}
-        component={Search}
+        component={() => <Search setBooks={setBooks} user={user}/>}
         />
         <Route
         path='*'

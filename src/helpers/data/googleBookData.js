@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import firebaseConfig from '../apiKeys';
+import { googleApi } from '../apiKeys';
 
-const dbUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
+const dbUrl = googleApi.googleBooksUrl;
 
 const getGoogleBooksData = (param) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}${param}&fields=items(id,volumeInfo)`)

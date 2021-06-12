@@ -7,7 +7,10 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+};
+
+const googleApi = {
   googleBooksUrl: process.env.REACT_APP_GOOGLE_BOOKS,
 };
 
-export default firebaseConfig;
+export { firebaseConfig, googleApi };
