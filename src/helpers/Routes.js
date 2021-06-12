@@ -55,7 +55,7 @@ export default function Routes({
         exact
         path='/explore'
         user={user}
-        component={Explore}
+        component={() => <Explore setBooks={setBooks} user={user}/>}
         />
         <PrivateRoute
         exact

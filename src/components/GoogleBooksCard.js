@@ -19,7 +19,7 @@ export default function GoogleBooksCard({ setBooks, user, ...gb }) {
   const history = useHistory();
 
   const saveBook = () => {
-    createBook(gbObj).then(setBooks);
+    createBook(gbObj.uid, gbObj).then(setBooks);
     history.push('/books');
   };
   return (
