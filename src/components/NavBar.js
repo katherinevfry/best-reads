@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem
+  Collapse, Navbar, NavbarToggler, Nav, NavItem
 } from 'reactstrap';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { signInUser, signOutUser } from '../helpers/auth';
 
@@ -12,42 +11,38 @@ const NavBar = ({ user }) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  const Logo = styled.img`
-  width: 13rem;
-  `;
-
   const authenticated = () => (
     <>
-    <NavItem>
-      <Link className='nav-link' to='/bookshelves'>Bookshelves</Link>
-    </NavItem>
-    <NavItem>
-      <Link className='nav-link' to='/books'>Books</Link>
-    </NavItem>
-    <NavItem>
-      <Link className='nav-link'to='/explore'>Explore</Link>
-    </NavItem>
-    <NavItem>
-      <Link className='nav-link' to='/search'>Search</Link>
-    </NavItem>
+        <NavItem>
+          <Link className='text-white text-md px-4 py-2 inline-block hover:text-red-400 hover:no-underline' to='/bookshelves'>Bookshelves</Link>
+        </NavItem>
+        <NavItem>
+          <Link className='text-white text-md px-4 py-2 inline-block hover:text-red-400 hover:no-underline' to='/books'>Books</Link>
+        </NavItem>
+        <NavItem>
+          <Link className='text-white text-md px-4 py-2 inline-block hover:text-red-400 hover:no-underline' to='/explore'>Explore</Link>
+        </NavItem>
+        <NavItem>
+          <Link className='text-white text-md px-4 py-2 inline-block hover:text-red-400 hover:no-underline' to='/search'>Search</Link>
+        </NavItem>
     </>
   );
 
   return (
     <div>
-      <Navbar light expand='md' className='font-serif text-xl'>
-        <NavbarBrand href="/">
-        <Logo src={'https://i.imgur.com/Al6yXby.png'}></Logo>
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} className="mr-2" />
+      <Navbar light expand='md' className='shadow-md rounded-b-lg'>
+        <span className='w-36'>
+        <img src={'https://i.imgur.com/RYT95Rk.png'}></img>
+        </span>
+        <NavbarToggler onClick={toggle} className="mr-1" />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="mr-auto">
             { user && authenticated()}
-            <NavItem>
+            <NavItem className='object-right'>
             {
           user
-            ? <button className='bg-red-400 hover:bg-red-600 text-white py-1 px-3 rounded-full' id="logOutBtn" onClick={signOutUser}>Sign Out</button>
-            : <button className='bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full' id="logInBtn" onClick={signInUser}>Sign In</button>
+            ? <button className="inline-block mr-0 text-md px-4 py-2 border rounded text-red-400 border-red-400 hover:border-transparent hover:text-white hover:bg-red-400" id="logOutBtn" onClick={signOutUser}>Sign Out</button>
+            : <button className="inline-block mr-0 text-md px-4 py-2 border rounded text-red-400 border-red-400 hover:border-transparent hover:text-white hover:bg-red-400" id="logInBtn" onClick={signInUser}>Sign In</button>
         }
             </NavItem>
           </Nav>
