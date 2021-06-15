@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, Input, Label
+  Form, Input, Label
 } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 import { createBookshelfBooks } from '../../helpers/data/bookshelfBooksData';
+import { getBooks } from '../../helpers/data/bookData';
 
-export default function AddBookToShelfForm({ books, setBookshelfBooks, bookshelfBooks }) {
+export default function AddBookToShelfForm({ setBookshelfBooks, bookshelfBooks, user }) {
+  const [books, setBooks] = useState([]);
+  useEffect(() => {
+    getBooks(user.uid).then(setBooks);
+  }, []);
   const { firebaseKey } = useParams();
   const [bookshelfBook, setBookshelfBook] = useState({
     bookshelfId: firebaseKey,
@@ -29,9 +34,9 @@ export default function AddBookToShelfForm({ books, setBookshelfBooks, bookshelf
   };
 
   return (
-    <div>
+    <div className="mt-4">
     <Form onSubmit={handleSubmit}>
-      <Label>Book</Label>
+      <Label>Add a Book</Label>
            <Input name='bookId'
            type='select'
            value={bookshelfBook.bookId}
@@ -45,14 +50,14 @@ export default function AddBookToShelfForm({ books, setBookshelfBooks, bookshelf
             </option>
           ))}
         </Input>
-        <Button type='submit'>add book</Button>
+        <button className='bg-red-400 hover:bg-red-500 text-white shadow-md py-2 px-3 mt-3 rounded-full'type='submit'>add book</button>
       </Form>
     </div>
   );
 }
 
 AddBookToShelfForm.propTypes = {
-  books: PropTypes.array,
+  user: PropTypes.any,
   setBookshelfBooks: PropTypes.func,
   bookshelfBooks: PropTypes.array
 };

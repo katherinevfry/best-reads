@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Input, Label, Form, FormGroup
+  Input, Label, Form, FormGroup
 } from 'reactstrap';
 import { createBook, updateBook } from '../../helpers/data/bookData';
 
@@ -34,7 +34,7 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
   };
 
   return (
-    <div>
+    <div className='mx-auto'>
       <Form id='addBookForm'
          autoComplete='off'
          onSubmit={handleSubmit}
@@ -75,7 +75,9 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
            </Input>
 
            <FormGroup tag="fieldset">
-            <legend>Rating</legend>
+            <legend>
+              <p>Rating</p>
+            </legend>
               <FormGroup check>
                 <Label check>
                   <Input type="radio" name="rating" value='1' checked={book.rating === '1'} onChange={handleInputChange} />
@@ -107,7 +109,7 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
                 </Label>
               </FormGroup>
             </FormGroup>
-
+          <div className='flex ml-4'>
            <Label>Public</Label>
            <Input name='public'
            type='checkbox'
@@ -115,8 +117,11 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
            onChange={handleInputChange}
            >
            </Input>
+           </div>
            <br/>
-           <Button id='submitBtn' type='submit'>Submit</Button>
+           <div className='mb-3'>
+            <button className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full' id='submitBtn' type='submit'>Submit</button>
+           </div>
       </Form>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Form, Input, Label, Button
+  Form, Input, Label
 } from 'reactstrap';
 import { createBookshelf, updateBookshelf } from '../../helpers/data/bookshelvesData';
 
@@ -16,7 +16,7 @@ export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj })
   const handleSubmit = (e) => {
     e.preventDefault();
     if (bookshelf.firebaseKey) {
-      updateBookshelf(bookshelf.uid, bookshelf.firebaseKey, bookshelf).then(setBookshelves);
+      updateBookshelf(bookshelf.uid, bookshelf.firebaseKey, bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
     } else {
       createBookshelf(user.uid, bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
     }
@@ -29,7 +29,7 @@ export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj })
     }));
   };
   return (
-    <div>
+    <div className='w-96 mx-auto'>
       <Form id='addBookForm'
          autoComplete='off'
          onSubmit={handleSubmit}
@@ -51,8 +51,9 @@ export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj })
            >
            </Input>
            <br/>
-
-           <Button id='submitBtn' type='submit'>Submit</Button>
+           <div className='mb-3'>
+            <button className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full' id='submitBtn' type='submit'>Submit</button>
+           </div>
       </Form>
     </div>
   );

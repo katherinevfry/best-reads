@@ -5,7 +5,7 @@ import BookshelfBookCard from '../components/BookshelfBookCard';
 import { mergeBooksAndSingleShelf } from '../helpers/data/bookshelfBooksData';
 import AddBookToShelfForm from '../components/forms/AddBookToShelfForm';
 
-export default function SingleBookshelf({ user, setBooks, books }) {
+export default function SingleBookshelf({ user }) {
   const [bookshelfBooks, setBookshelfBooks] = useState([]);
   const { firebaseKey } = useParams();
   useEffect(() => {
@@ -14,15 +14,14 @@ export default function SingleBookshelf({ user, setBooks, books }) {
 
   return (
     <div>
-      <h1>katy</h1>
-      <AddBookToShelfForm user={user} setBookshelfBooks={setBookshelfBooks} books={books} bookshelfBooks={bookshelfBooks}/>
-      <div>
+      <div className="mx-auto w-96">
+      <AddBookToShelfForm user={user} setBookshelfBooks={setBookshelfBooks} bookshelfBooks={bookshelfBooks}/>
+      </div>
+      <div className="flex flex-row flex-wrap justify-center">
       {bookshelfBooks.map((book) => (
         <BookshelfBookCard key={book?.firebaseKey}
         user={user}
-        books={books}
         setBookshelfBooks={setBookshelfBooks}
-        setBooks={setBooks}
         bookshelfBooks={bookshelfBooks}
         {...book}
         />
@@ -34,6 +33,4 @@ export default function SingleBookshelf({ user, setBooks, books }) {
 
 SingleBookshelf.propTypes = {
   user: PropTypes.any,
-  setBooks: PropTypes.func,
-  books: PropTypes.array
 };

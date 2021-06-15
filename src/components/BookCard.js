@@ -35,37 +35,42 @@ export default function BookCard({ setBooks, user, ...book }) {
 
   return (
     <>
-      <div className='boookCard rounded bg-white w-1/3 shadow-md m-3'>
-        <div className='flex'>
-          <img src={book.imageUrl} alt={book.title} className='w-48 object-scale-down rounded m-auto px-6 py-4'></img>
-          <div className="px-6 py-4">
-            <h5>{book.title}</h5>
-            <h6>{book.author}</h6>
-            <p>{book.rating}/5</p>
-            <p>{book.review}</p>
-          </div>
+      <div>
+        <div className="max-w-sm bg-medblue shadow-lg rounded overflow-hidden w-72 m-4">
+        <img className="w-44 mx-auto mt-2 rounded-md" src={book.imageUrl} alt={book.title}></img>
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">{book.title}</div>
+          <p className="text-white text-base">
+            {book.rating}/5
+          </p>
+          <p className="text-white text-base">
+            {book.review}
+          </p>
         </div>
-        <div className='buttonDiv px-6 py-4 flex justify-end'>
-            <button type='button'
-            className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full'
-            onClick={() => handleClick('delete')}
-            >
-              delete
-            </button>
-            <button type='button'
-            className='bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-3 rounded-full'
-            onClick={() => handleClick('edit')}
-            >
-              {editing ? 'close' : 'edit'}
-            </button>
-          </div>
-          {
-            editing && <BookForm
-            setBooks={setBooks}
-            user={user}
-            {...book}
-            />
-          }
+        <div className="px-6 pt-4 pb-2 mb-2">
+        <button type='button'
+                  className='bg-red-400 hover:bg-red-500 text-white shadow-md py-2 px-3 rounded-full'
+                  onClick={() => handleClick('delete')}
+                  >
+                    delete
+                  </button>
+                  <button type='button'
+                  className='bg-red-400 hover:bg-red-400 text-white shadow-md py-2 px-3 rounded-full'
+                  onClick={() => handleClick('edit')}
+                  >
+                    {editing ? 'close' : 'edit'}
+                  </button>
+                </div>
+                <div className="w-60 mx-auto">
+                {
+                  editing && <BookForm
+                  setBooks={setBooks}
+                  user={user}
+                  {...book}
+                  />
+                }
+                </div>
+        </div>
       </div>
     </>
   );

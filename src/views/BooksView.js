@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import BookForm from '../components/forms/bookForm';
 import BookCard from '../components/BookCard';
+import { getBooks } from '../helpers/data/bookData';
 
-const BookContainer = styled.div`
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: center;
-`;
-
-export default function BooksView({ books, setBooks, user }) {
+export default function BooksView({ user }) {
+  const [books, setBooks] = useState([]);
+  useEffect(() => {
+    getBooks(user.uid).then(setBooks);
+  }, [books]);
+  const history = useHistory();
   const [creating, setCreating] = useState(false);
   const seeForm = () => {
     setCreating((prevState) => !prevState);
@@ -29,21 +28,30 @@ export default function BooksView({ books, setBooks, user }) {
 
   return (
     <div>
-      <h1 className='font-mono text-center'>my books</h1>
+      <div className='flex justify-center'>
       <button type='button'
-      className='bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-3 rounded-full'
+      onClick={() => history.push('/search')}
+      className='bg-red-400 hover:bg-red-500 shadow-sm text-white py-2 px-3 rounded-full m-2'>
+        search
+      </button>
+      <button type='button'
+      className='bg-red-400 hover:bg-red-500 shadow-sm text-white py-2 px-3 rounded-full m-2'
       onClick={seeForm}>
         {creating ? 'close form' : '+ add a book'}
       </button>
-
+      </div>
+      <div className="w-96 mx-auto">
       {creating && <BookForm setBooks={setBooks} user={user}/>}
-
-      <button type='button'
-      className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full'
-      onClick={sortBooks}>
-        sort by rating
+      </div>
+    <div>
+      <div className="flex justify-center mt-2">
+        <button type='button'
+        className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full'
+        onClick={sortBooks}>
+          sort by rating
         </button>
-      <BookContainer>
+      </div>
+      <div className="flex flex-row flex-wrap justify-center">
       {books.map((book) => (
         <BookCard
         key={book.firebaseKey}
@@ -52,13 +60,12 @@ export default function BooksView({ books, setBooks, user }) {
         {...book}
         />
       ))}
-      </BookContainer>
+      </div>
+      </div>
     </div>
   );
 }
 
 BooksView.propTypes = {
   user: PropTypes.any,
-  books: PropTypes.array,
-  setBooks: PropTypes.func
 };

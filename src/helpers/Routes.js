@@ -22,46 +22,44 @@ PrivateRoute.propTypes = {
   user: PropTypes.any
 };
 
-export default function Routes({
-  user, books, setBooks, bookshelves, setBookshelves
-}) {
+export default function Routes({ user }) {
   return (
     <div>
       <Switch>
         <Route
         exact
         path='/'
-        component={Home}
+        component={() => <Home user={user}/>}
         />
         <PrivateRoute
         exact
         path='/bookshelves'
         user={user}
-        component={() => <BookshelvesView bookshelves={bookshelves} setBookshelves={setBookshelves}user={user} />}
+        component={() => <BookshelvesView user={user} />}
         />
         <PrivateRoute
         exact
         path='/bookshelves/:firebaseKey'
         user={user}
-        component={() => <SingleBookshelf user={user} setBooks={setBooks} books={books} />}
+        component={() => <SingleBookshelf user={user} />}
         />
         <PrivateRoute
         exact
         path='/books'
         user={user}
-        component={() => <BooksView books={books} setBooks={setBooks} user={user}/>}
+        component={() => <BooksView user={user}/>}
         />
         <PrivateRoute
         exact
         path='/explore'
         user={user}
-        component={() => <Explore setBooks={setBooks} user={user}/>}
+        component={() => <Explore user={user}/>}
         />
         <PrivateRoute
         exact
         path='/search'
         user={user}
-        component={() => <Search setBooks={setBooks} user={user}/>}
+        component={() => <Search user={user}/>}
         />
         <Route
         path='*'
