@@ -34,7 +34,7 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
   };
 
   return (
-    <div className='w-96 mx-auto'>
+    <div className='mx-auto'>
       <Form id='addBookForm'
          autoComplete='off'
          onSubmit={handleSubmit}
@@ -75,8 +75,9 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
            </Input>
 
            <FormGroup tag="fieldset">
-            <legend>Rating</legend>
-            <span>
+            <legend>
+              <p>Rating</p>
+            </legend>
               <FormGroup check>
                 <Label check>
                   <Input type="radio" name="rating" value='1' checked={book.rating === '1'} onChange={handleInputChange} />
@@ -107,9 +108,8 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
                   5
                 </Label>
               </FormGroup>
-              </span>
             </FormGroup>
-          <div className='flex'>
+          <div className='flex ml-4'>
            <Label>Public</Label>
            <Input name='public'
            type='checkbox'

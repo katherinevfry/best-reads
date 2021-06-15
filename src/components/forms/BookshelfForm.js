@@ -16,7 +16,7 @@ export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj })
   const handleSubmit = (e) => {
     e.preventDefault();
     if (bookshelf.firebaseKey) {
-      updateBookshelf(bookshelf.uid, bookshelf.firebaseKey, bookshelf).then(setBookshelves);
+      updateBookshelf(bookshelf.uid, bookshelf.firebaseKey, bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
     } else {
       createBookshelf(user.uid, bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
     }

@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import BookshelfForm from '../components/forms/BookshelfForm';
 import BookshelfCard from '../components/BookshelfCard';
+import { getBookshelves } from '../helpers/data/bookshelvesData';
 
-export default function BookshelvesView({ bookshelves, setBookshelves, user }) {
+export default function BookshelvesView({ user }) {
   const [adding, setAdding] = useState(false);
+  const [bookshelves, setBookshelves] = useState([]);
+  useEffect(() => {
+    getBookshelves(user.uid).then(setBookshelves);
+  }, [bookshelves]);
   const seeForm = () => {
     setAdding((prevState) => !prevState);
   };
@@ -20,7 +25,7 @@ export default function BookshelvesView({ bookshelves, setBookshelves, user }) {
     <div>
       <div className='flex justify-center m-3'>
         <button type='button'
-        className='bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-3 rounded-full'
+        className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full'
         onClick={seeForm}>
           {adding ? 'close form' : '+ add a bookshelf'}
         </button>

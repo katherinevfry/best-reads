@@ -1,9 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function Home() {
+export default function Home({ user }) {
   return (
     <div>
-      <h1>This is the home page</h1>
+      {user && <h2>Welcome home, {user.fullName}</h2>
+      }
     </div>
   );
 }
+
+Home.propTypes = {
+  user: PropTypes.any
+};

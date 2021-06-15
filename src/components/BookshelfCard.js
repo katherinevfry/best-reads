@@ -38,7 +38,7 @@ export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
   };
 
   return (
-    <div className=' rounded shadow-md m-4 w-52 h-64 relative'>
+    <div className='max-w-sm bg-medblue shadow-lg rounded overflow-hidden w-72 m-4'>
       <div className='mt-3'>
         <h4 className='text-center'>{bookshelf.title}</h4>
         <p className='text-center'>{bookshelf.description}</p>
