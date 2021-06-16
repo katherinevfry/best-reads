@@ -27,7 +27,7 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (book.firebaseKey) {
-      updateBook(book.uid, book.firebaseKey, book).then((booksArray) => setBooks(booksArray));
+      updateBook(book.uid, book.firebaseKey, book).then(setBooks);
     } else {
       createBook(book.uid, book).then((booksArray) => setBooks(booksArray));
     }

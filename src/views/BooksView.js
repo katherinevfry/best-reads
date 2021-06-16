@@ -9,7 +9,7 @@ export default function BooksView({ user }) {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     getBooks(user.uid).then(setBooks);
-  }, [books]);
+  }, [books.length]);
   const history = useHistory();
   const [creating, setCreating] = useState(false);
   const seeForm = () => {
