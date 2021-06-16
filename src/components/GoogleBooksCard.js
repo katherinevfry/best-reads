@@ -7,6 +7,8 @@ export default function GoogleBooksCard({ user, ...gb }) {
   const gbObj = {
     firebaseKey: null,
     uid: user.uid,
+    userImg: user.profileImage,
+    userName: user.userName,
     author: gb?.volumeInfo?.authors?.toString(),
     imageUrl: gb?.volumeInfo?.imageLinks?.smallThumbnail,
     public: false,

@@ -5,7 +5,9 @@ import {
 } from 'reactstrap';
 import { createBookshelf, updateBookshelf } from '../../helpers/data/bookshelvesData';
 
-export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj }) {
+export default function BookshelfForm({
+  setBookshelves, user, seeForm, ...bookshelfObj
+}) {
   const [bookshelf, setBookshelf] = useState({
     title: bookshelfObj?.title || '',
     description: bookshelfObj?.description || '',
@@ -17,8 +19,10 @@ export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj })
     e.preventDefault();
     if (bookshelf.firebaseKey) {
       updateBookshelf(bookshelf.uid, bookshelf.firebaseKey, bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
+      seeForm();
     } else {
       createBookshelf(user.uid, bookshelf).then((bookshelvesArray) => setBookshelves(bookshelvesArray));
+      seeForm();
     }
   };
 
@@ -61,5 +65,6 @@ export default function BookshelfForm({ setBookshelves, user, ...bookshelfObj })
 
 BookshelfForm.propTypes = {
   setBookshelves: PropTypes.func,
-  user: PropTypes.any
+  user: PropTypes.any,
+  seeForm: PropTypes.func
 };

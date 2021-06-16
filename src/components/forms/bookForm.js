@@ -5,7 +5,9 @@ import {
 } from 'reactstrap';
 import { createBook, updateBook } from '../../helpers/data/bookData';
 
-export default function BookForm({ setBooks, user, ...bookObj }) {
+export default function BookForm({
+  setBooks, user, seeForm, ...bookObj
+}) {
   const [book, setBook] = useState({
     title: bookObj?.title || '',
     author: bookObj?.author || '',
@@ -14,6 +16,8 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
     review: bookObj?.review || '',
     firebaseKey: bookObj?.firebaseKey || null,
     uid: user.uid,
+    userImg: user.profileImage,
+    userName: user.userName,
     public: bookObj?.public || false
   });
 
@@ -28,8 +32,10 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
     e.preventDefault();
     if (book.firebaseKey) {
       updateBook(book.uid, book.firebaseKey, book).then(setBooks);
+      seeForm();
     } else {
       createBook(book.uid, book).then((booksArray) => setBooks(booksArray));
+      seeForm();
     }
   };
 
@@ -130,4 +136,5 @@ export default function BookForm({ setBooks, user, ...bookObj }) {
 BookForm.propTypes = {
   setBooks: PropTypes.func,
   user: PropTypes.any,
+  seeForm: PropTypes.func
 };
