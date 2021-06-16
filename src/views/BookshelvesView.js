@@ -5,13 +5,13 @@ import BookshelfCard from '../components/BookshelfCard';
 import { getBookshelves } from '../helpers/data/bookshelvesData';
 
 export default function BookshelvesView({ user }) {
-  const [adding, setAdding] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [bookshelves, setBookshelves] = useState([]);
   useEffect(() => {
     getBookshelves(user.uid).then(setBookshelves);
   }, [bookshelves]);
   const seeForm = () => {
-    setAdding((prevState) => !prevState);
+    setEditing((prevState) => !prevState);
   };
   const getBookshelfCards = () => (
     bookshelves.map((bookshelf) => (
@@ -27,12 +27,12 @@ export default function BookshelvesView({ user }) {
         <button type='button'
         className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full'
         onClick={seeForm}>
-          {adding ? 'close form' : '+ add a bookshelf'}
+          {editing ? 'close form' : '+ add a bookshelf'}
         </button>
       </div>
 
       {
-      adding && <BookshelfForm setBookshelves={setBookshelves} user={user}/>
+      editing && <BookshelfForm setBookshelves={setBookshelves} user={user} seeForm={seeForm}/>
       }
 
       <div className='flex flex-row flex-wrap justify-center'>

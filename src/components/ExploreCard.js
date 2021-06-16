@@ -7,6 +7,8 @@ export default function ExploreCard({ user, ...pubBook }) {
   const newBookObj = {
     firebaseKey: null,
     uid: user.uid,
+    userImg: user.profileImage,
+    userName: user.userName,
     author: pubBook.author,
     imageUrl: pubBook.imageUrl,
     public: false,
@@ -38,6 +40,10 @@ export default function ExploreCard({ user, ...pubBook }) {
           {
           user.uid !== pubBook.uid && <button className='bg-red-400 hover:bg-red-400 text-white shadow-md py-2 px-3 rounded-full' onClick={saveBook}>save book</button>
           }
+        </div>
+        <div className="px-6 py-2 flex flex-row flex-nowrap">
+          <img className="rounded-full h-10 w-10" src={pubBook?.userImg} alt={pubBook?.userName}></img>
+          <p className="self-center pl-2 pt-2">{pubBook?.userName}</p>
         </div>
         </div>
       </div>

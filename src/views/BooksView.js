@@ -9,11 +9,11 @@ export default function BooksView({ user }) {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     getBooks(user.uid).then(setBooks);
-  }, [books]);
+  }, [books.length]);
   const history = useHistory();
-  const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState(false);
   const seeForm = () => {
-    setCreating((prevState) => !prevState);
+    setEditing((prevState) => !prevState);
   };
 
   const sortBooks = () => {
@@ -37,18 +37,18 @@ export default function BooksView({ user }) {
       <button type='button'
       className='bg-red-400 hover:bg-red-500 shadow-sm text-white py-2 px-3 rounded-full m-2'
       onClick={seeForm}>
-        {creating ? 'close form' : '+ add a book'}
+        {editing ? 'close form' : '+ add a book'}
       </button>
       </div>
       <div className="w-96 mx-auto">
-      {creating && <BookForm setBooks={setBooks} user={user}/>}
+      {editing && <BookForm setBooks={setBooks} user={user} seeForm={seeForm} />}
       </div>
     <div>
       <div className="flex justify-center mt-2">
         <button type='button'
-        className='bg-red-400 hover:bg-red-500 text-white py-2 px-3 rounded-full'
+        className='bg-medblue hover:bg-darkblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'
         onClick={sortBooks}>
-          sort by rating
+          sort books by rating
         </button>
       </div>
       <div className="flex flex-row flex-wrap justify-center">

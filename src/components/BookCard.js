@@ -13,6 +13,10 @@ export default function BookCard({ setBooks, user, ...book }) {
     deleteBook(book.uid, book.firebaseKey).then(setBooks);
   };
 
+  const seeForm = () => {
+    setEditing((prevState) => !prevState);
+  };
+
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
@@ -26,7 +30,7 @@ export default function BookCard({ setBooks, user, ...book }) {
           });
         break;
       case 'edit':
-        setEditing((prevState) => !prevState);
+        seeForm();
         break;
       default:
         console.warn('nothing here');
@@ -49,13 +53,13 @@ export default function BookCard({ setBooks, user, ...book }) {
         </div>
         <div className="px-6 pt-4 pb-2 mb-2">
         <button type='button'
-                  className='bg-red-400 hover:bg-red-500 text-white shadow-md py-2 px-3 rounded-full'
+                  className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'
                   onClick={() => handleClick('delete')}
                   >
                     delete
                   </button>
                   <button type='button'
-                  className='bg-red-400 hover:bg-red-400 text-white shadow-md py-2 px-3 rounded-full'
+                  className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'
                   onClick={() => handleClick('edit')}
                   >
                     {editing ? 'close' : 'edit'}
@@ -66,6 +70,7 @@ export default function BookCard({ setBooks, user, ...book }) {
                   editing && <BookForm
                   setBooks={setBooks}
                   user={user}
+                  seeForm={seeForm}
                   {...book}
                   />
                 }
