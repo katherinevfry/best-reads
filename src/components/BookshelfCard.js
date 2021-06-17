@@ -53,19 +53,19 @@ export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
           </svg>
           see books
         </button>
-        <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md' onClick={() => handleClick('edit')} >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline-block text-white mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-          </svg>
-          { editing ? 'close' : 'edit shelf' }
-        </button>
         <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md' onClick={() => handleClick('delete')} >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline-block text-white mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
           delete
         </button>
-        <div className='w-auto'>
+        <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md' onClick={() => handleClick('edit')} >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline-block text-white mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+          </svg>
+          { editing ? 'close' : 'edit shelf' }
+        </button>
+        <div className="w-60 mx-auto">
         {
             editing && <BookshelfForm
             setBookshelves={setBookshelves}
@@ -74,9 +74,9 @@ export default function BookshelfCard({ setBookshelves, user, ...bookshelf }) {
             {...bookshelf}
             />
           }
-          </div>
         </div>
       </div>
+    </div>
   );
 }
 
