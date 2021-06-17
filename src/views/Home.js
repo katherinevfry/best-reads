@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Hero from '../components/Hero';
-import { getBooks } from '../helpers/data/bookData';
 
-export default function Home({ user }) {
-  const [books, setBooks] = useState([]);
-  useEffect(() => {
-    getBooks(user.uid).then(setBooks);
-  }, []);
+export default function Home({ user, books }) {
   return (
   <>
     <div>
@@ -38,5 +33,6 @@ export default function Home({ user }) {
 }
 
 Home.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  books: PropTypes.array
 };
