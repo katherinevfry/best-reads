@@ -6,9 +6,11 @@ import NavBar from '../components/NavBar';
 import './App.scss';
 import Routes from '../helpers/Routes';
 import { getUserbyUid, createUser } from '../helpers/data/userData';
+import { getBooks } from '../helpers/data/bookData';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -25,6 +27,7 @@ function App() {
           } else {
             setUser(userInfoObj);
           }
+          getBooks(authed.uid).then(setBooks);
         });
       } else if (user || user === null) {
         setUser(false);
@@ -36,7 +39,9 @@ function App() {
     <div>
       <Router>
         <NavBar user={user}/>
-        <Routes user={user}/>
+        <Routes user={user}
+        books={books}
+        />
       </Router>
     </div>
   );
