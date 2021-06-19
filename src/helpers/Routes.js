@@ -8,6 +8,7 @@ import Home from '../views/Home';
 import NotFound from '../views/NotFound';
 import Search from '../views/Search';
 import SingleBookshelf from '../views/SingleBookshelf';
+import ShareBook from '../views/ShareBook';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (taco) => (user
@@ -60,6 +61,11 @@ export default function Routes({ user, books }) {
         path='/search'
         user={user}
         component={() => <Search user={user}/>}
+        />
+        <Route
+        exact
+        path='/books/:firebaseKey'
+        component={() => <ShareBook user={user}/>}
         />
         <Route
         path='*'

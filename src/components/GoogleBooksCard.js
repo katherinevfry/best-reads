@@ -24,7 +24,7 @@ export default function GoogleBooksCard({ user, ...gb }) {
   };
   return (
     <div>
-      <div className="max-w-sm bg-medblue shadow-lg rounded overflow-hidden w-72 m-4">
+      <div className="max-w-sm bg-medblue shadow-lg rounded overflow-auto w-72 h-96 m-4 googleBookCard">
         <img className="w-44 mx-auto mt-2 rounded-md" src={gb?.volumeInfo?.imageLinks?.smallThumbnail} alt={gb?.volumeInfo?.title}></img>
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">{gb?.volumeInfo?.title}</div>

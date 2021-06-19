@@ -11,7 +11,7 @@ export default function Home({ user, books }) {
         <h2 className="text-center pt-4 lg:p-9">Welcome home, {user.fullName}</h2>
       </div>
       <h3 className="ml-12">recently added</h3>
-      <div className="mb-16 mx-12 p-6 flex flex-row flex-wrap justify-center rounded-xl bg-medblue">
+      <div className="mb-16 mx-12 p-6 flex flex-row flex-wrap justify-center rounded-xl bg-medblue shadow-lg">
         {
         books
           ? books?.map((book) => (

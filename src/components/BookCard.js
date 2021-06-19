@@ -77,7 +77,7 @@ export default function BookCard({ setBooks, user, ...book }) {
             {book.review}
           </p>
         </div>
-        <div className="px-6 pt-4 pb-2 mb-2">
+        <div className="px-6 pt-4 pb-2 mb-2 flex flex-col justify-center">
         <button type='button'
                   className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'
                   onClick={() => handleClick('delete')}

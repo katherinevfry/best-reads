@@ -58,9 +58,9 @@ export default function BookshelfBookCard({
             {book.review}
           </p>
         </div>
-        <div className="px-6 pt-4 pb-2 mb-2">
+        <div className="px-6 pt-4 pb-2 mb-2 flex justify-center">
         <button type='button'
-                  className='bg-red-400 hover:bg-red-500 text-white shadow-md py-2 px-3 rounded-full'
+                  className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'
                   onClick={() => handleClick('delete')}
                   >
                     remove from shelf
