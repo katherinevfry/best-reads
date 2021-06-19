@@ -60,23 +60,20 @@ export default function ExploreCard({ user, ...pubBook }) {
             {pubBook?.review}
           </p>
         </div>
-        <div className="px-6 py-4">
+        <div className="px-6 py-4 flex justify-center">
           {
-          user.uid !== pubBook.uid && <button className='bg-red-400 hover:bg-red-400 text-white shadow-md py-2 px-3 rounded-full' onClick={saveBook}>save book</button>
+          user.uid !== pubBook.uid
+            ? <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md' onClick={saveBook}>save book</button>
+            : <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'>
+            <a className="twitter-share-button text-white"
+            href={`https://twitter.com/intent/tweet?text=check%20out%20${pubBook.title}%20by%20${pubBook.author}!%20https://best-reads.netlify.app/books${pubBook.firebaseKey}`}>
+          tweet this review</a>
+            </button>
           }
         </div>
         <div className="px-6 py-2 flex flex-row flex-nowrap">
           <img className="rounded-full h-10 w-10" src={pubBook?.userImg} alt={pubBook?.userName}></img>
           <p className="self-center pl-2 pt-2">{pubBook?.userName}</p>
-        </div>
-        <div>
-          {
-            user.uid === pubBook.uid && (
-              <div>
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-text="Check out this book review!" data-url={`https://best-reads.netlify.app/books/${pubBook.firebaseKey}`} data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              </div>
-            )
-          }
         </div>
         </div>
       </div>
