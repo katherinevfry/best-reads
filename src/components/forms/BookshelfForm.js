@@ -33,7 +33,7 @@ export default function BookshelfForm({
     }));
   };
   return (
-    <div className='w-96 mx-auto'>
+    <div className='mx-auto'>
       <Form id='addBookForm'
          autoComplete='off'
          onSubmit={handleSubmit}

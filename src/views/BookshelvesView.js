@@ -13,14 +13,7 @@ export default function BookshelvesView({ user }) {
   const seeForm = () => {
     setEditing((prevState) => !prevState);
   };
-  const getBookshelfCards = () => (
-    bookshelves.map((bookshelf) => (
-      <BookshelfCard key={bookshelf.firebaseKey}
-      setBookshelves={setBookshelves}
-      {...bookshelf}
-      />
-    ))
-  );
+
   return (
     <div>
       <div className='flex justify-center m-3'>
@@ -31,15 +24,23 @@ export default function BookshelvesView({ user }) {
         </button>
       </div>
 
+    <div className="w-80 mx-auto">
       {
-      editing && <BookshelfForm setBookshelves={setBookshelves} user={user} seeForm={seeForm}/>
+      editing && <BookshelfForm
+      setBookshelves={setBookshelves}
+      user={user}
+      seeForm={seeForm}
+      />
       }
+      </div>
 
-      <div className='flex flex-row flex-wrap justify-center'>
-        { bookshelves != null
-          ? getBookshelfCards()
-          : <h2>please add a bookshelf</h2>
-      }
+      <div className="flex flex-row flex-wrap justify-center">
+        {bookshelves?.map((bookshelf) => (
+      <BookshelfCard key={bookshelf.firebaseKey}
+      setBookshelves={setBookshelves}
+      {...bookshelf}
+      />
+        ))}
       </div>
     </div>
   );

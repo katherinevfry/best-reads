@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { deleteBook } from '../helpers/data/bookData';
 import { getSingleBookshelfBooksByBookId, deleteBookshelfRel } from '../helpers/data/bookshelfBooksData';
@@ -6,6 +6,7 @@ import BookForm from './forms/bookForm';
 
 export default function BookCard({ setBooks, user, ...book }) {
   const [editing, setEditing] = useState(false);
+  const [heart, setHeart] = useState('');
   const getAllRels = (taco) => {
     taco.forEach((i) => {
       deleteBookshelfRel(i.firebaseKey).then();
@@ -37,6 +38,31 @@ export default function BookCard({ setBooks, user, ...book }) {
     }
   };
 
+  useEffect(() => {
+    switch (book?.rating) {
+      case '0':
+        setHeart('https://i.imgur.com/fS9vnN7.png');
+        break;
+      case '1':
+        setHeart('https://i.imgur.com/uf4WJ5c.png');
+        break;
+      case '2':
+        setHeart('https://i.imgur.com/OTLU0Ys.png');
+        break;
+      case '3':
+        setHeart('https://i.imgur.com/ZmtXJNh.png');
+        break;
+      case '4':
+        setHeart('https://i.imgur.com/c1kns2H.png');
+        break;
+      case '5':
+        setHeart('https://i.imgur.com/k0pgQ9G.png');
+        break;
+      default:
+        setHeart('https://i.imgur.com/fS9vnN7.png');
+    }
+  }, [book.rating]);
+
   return (
     <>
       <div>
@@ -44,9 +70,9 @@ export default function BookCard({ setBooks, user, ...book }) {
         <img className="w-44 mx-auto mt-2 rounded-md" src={book.imageUrl} alt={book.title}></img>
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">{book.title}</div>
-          <p className="text-white text-base">
-            {book.rating}/5
-          </p>
+          <div>
+            <img className="w-32 object-cover"src={heart} alt={book.rating}></img>
+          </div>
           <p className="text-white text-base">
             {book.review}
           </p>
