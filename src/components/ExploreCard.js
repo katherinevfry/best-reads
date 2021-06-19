@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { createBook } from '../helpers/data/bookData';
@@ -18,10 +18,36 @@ export default function ExploreCard({ user, ...pubBook }) {
   };
 
   const history = useHistory();
-
+  const [heart, setHeart] = useState('');
   const saveBook = () => {
     createBook(user.uid, newBookObj).then(history.push('/books'));
   };
+
+  useEffect(() => {
+    switch (pubBook?.rating) {
+      case '0':
+        setHeart('https://i.imgur.com/fS9vnN7.png');
+        break;
+      case '1':
+        setHeart('https://i.imgur.com/uf4WJ5c.png');
+        break;
+      case '2':
+        setHeart('https://i.imgur.com/OTLU0Ys.png');
+        break;
+      case '3':
+        setHeart('https://i.imgur.com/ZmtXJNh.png');
+        break;
+      case '4':
+        setHeart('https://i.imgur.com/c1kns2H.png');
+        break;
+      case '5':
+        setHeart('https://i.imgur.com/k0pgQ9G.png');
+        break;
+      default:
+        setHeart('https://i.imgur.com/fS9vnN7.png');
+    }
+  }, [pubBook.rating]);
+
   return (
     <>
       <div>
@@ -29,9 +55,7 @@ export default function ExploreCard({ user, ...pubBook }) {
         <img className="w-44 mx-auto mt-2 rounded-md" src={pubBook?.imageUrl} alt={pubBook?.title}></img>
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">{pubBook?.title}</div>
-          <p className="text-white text-base">
-            {pubBook?.rating}/5
-          </p>
+          <img className="w-32 object-cover" src={heart} alt={pubBook?.rating}></img>
           <p className="text-white text-base">
             {pubBook?.review}
           </p>
