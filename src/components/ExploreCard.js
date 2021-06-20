@@ -66,7 +66,7 @@ export default function ExploreCard({ user, ...pubBook }) {
             ? <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md' onClick={saveBook}>save book</button>
             : <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'>
             <a className="twitter-share-button text-white"
-            href={`https://twitter.com/intent/tweet?text=check%20out%20${pubBook.title}%20by%20${pubBook.author}!%20https://best-reads.netlify.app/books${pubBook.firebaseKey}`}>
+            href={`https://twitter.com/intent/tweet?text=Check%20out%20${pubBook.title}%20by%20${pubBook.author}!%20https://best-reads.netlify.app/books/${pubBook.firebaseKey}`}>
           tweet this review</a>
             </button>
           }
