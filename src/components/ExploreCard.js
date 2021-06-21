@@ -19,6 +19,7 @@ export default function ExploreCard({ user, ...pubBook }) {
 
   const history = useHistory();
   const [heart, setHeart] = useState('');
+  // const [newHref, setNewHref] = useState('');
   const saveBook = () => {
     createBook(user.uid, newBookObj).then(history.push('/books'));
   };
@@ -64,11 +65,7 @@ export default function ExploreCard({ user, ...pubBook }) {
           {
           user.uid !== pubBook.uid
             ? <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md' onClick={saveBook}>save book</button>
-            : <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'>
-            <a className="twitter-share-button text-white"
-            href={`https://twitter.com/intent/tweet?text=Check%20out%20${pubBook.title}%20by%20${pubBook.author}!%20https://best-reads.netlify.app/books/${pubBook.firebaseKey}`}>
-          tweet this review</a>
-            </button>
+            : <button className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md' onClick={() => history.push(`books/${pubBook.firebaseKey}`)}>learn more</button>
           }
         </div>
         <div className="px-6 py-2 flex flex-row flex-nowrap">
