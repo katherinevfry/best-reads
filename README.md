@@ -1,4 +1,133 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/de69bd00-b634-498d-b1af-4bcaff49c9d2/deploy-status)](https://app.netlify.com/sites/best-reads/deploys)
 # BestReads
+![img1](https://i.imgur.com/apWIip6.jpg)
+![img2](https://i.imgur.com/MSTPBn9.jpg)
+![img3](https://i.imgur.com/z6Pffyt.jpg)
+![img4](https://i.imgur.com/7kpUtba.jpg)
+![img5](https://i.imgur.com/5zJh5RP.jpg)
+![img6](https://i.imgur.com/0heaaZy.jpg)
+![img7](https://i.imgur.com/taehTMz.jpg)
+
+## Rationale
+There are various book tracking apps available, but they all suffer from clutter--too many features, too many advertisements. They aren't fun OR easy to use. I wanted BestReads to offer a clean user experience--both in design and functionality. BestReads makes it easy to find books (via the Google Books API or your friend's public reviews), rate and review those books, and sort them onto shelves. The user can add as many shelves as she likes, and books can appear on more than one shelf. Chronicles the books you're currently reading, create a list of favorites--this is your app! Another central feature of the app is that all content is private by default--your reviews, ratings, books, and bookshelves are all your own. 
+
+## Technologies Used
+- Vanilla JS
+- React
+- Tailwind CSS
+- JSX
+- React Router Dom
+- Google Books API
+- Postman for API testing
+- Firebase for authentication and realtime database
+- Netlify for deployment
+
+## Code Snippet
+```
+
+export default function BookCard({ setBooks, user, ...book }) {
+  const [editing, setEditing] = useState(false);
+  const [heart, setHeart] = useState('');
+  const getAllRels = (taco) => {
+    taco.forEach((i) => {
+      deleteBookshelfRel(i.firebaseKey).then();
+    });
+    deleteBook(book.uid, book.firebaseKey).then(setBooks);
+  };
+
+  const seeForm = () => {
+    setEditing((prevState) => !prevState);
+  };
+
+  const handleClick = (type) => {
+    switch (type) {
+      case 'delete':
+        getSingleBookshelfBooksByBookId(book.firebaseKey)
+          .then((resp) => {
+            if (resp.length === 0) {
+              deleteBook(book.uid, book.firebaseKey).then(setBooks);
+            } else {
+              getAllRels(resp);
+            }
+          });
+        break;
+      case 'edit':
+        seeForm();
+        break;
+      default:
+        console.warn('nothing here');
+    }
+  };
+
+  useEffect(() => {
+    switch (book?.rating) {
+      case '0':
+        setHeart('https://i.imgur.com/fS9vnN7.png');
+        break;
+      case '1':
+        setHeart('https://i.imgur.com/uf4WJ5c.png');
+        break;
+      case '2':
+        setHeart('https://i.imgur.com/OTLU0Ys.png');
+        break;
+      case '3':
+        setHeart('https://i.imgur.com/ZmtXJNh.png');
+        break;
+      case '4':
+        setHeart('https://i.imgur.com/c1kns2H.png');
+        break;
+      case '5':
+        setHeart('https://i.imgur.com/k0pgQ9G.png');
+        break;
+      default:
+        setHeart('https://i.imgur.com/fS9vnN7.png');
+    }
+  }, [book.rating]);
+
+  return (
+    <>
+      <div>
+        <div className="max-w-sm bg-medblue shadow-lg rounded overflow-hidden w-72 m-4">
+        <img className="w-44 mx-auto mt-2 rounded-md" src={book.imageUrl} alt={book.title}></img>
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">{book.title}</div>
+          <div>
+            <img className="w-32 object-cover"src={heart} alt={book.rating}></img>
+          </div>
+          <p className="text-white text-base">
+            {book.review}
+          </p>
+        </div>
+        <div className="px-6 pt-4 pb-2 mb-2 flex flex-col justify-center">
+        <button type='button'
+                  className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'
+                  onClick={() => handleClick('delete')}
+                  >
+                    delete
+                  </button>
+                  <button type='button'
+                  className='bg-darkblue hover:bg-medblue border-2 border-transparent hover:border-white text-white py-2 px-3 rounded-full my-1 shadow-md'
+                  onClick={() => handleClick('edit')}
+                  >
+                    {editing ? 'close' : 'edit'}
+                  </button>
+                </div>
+                <div className="w-60 mx-auto">
+                {
+                  editing && <BookForm
+                  setBooks={setBooks}
+                  user={user}
+                  seeForm={seeForm}
+                  {...book}
+                  />
+                }
+                </div>
+        </div>
+      </div>
+    </>
+  );
+}
+```
 
 ## ERD
 https://dbdiagram.io/d/60ad30d0b29a09603d167b7a
