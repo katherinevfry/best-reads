@@ -154,6 +154,8 @@ export default function BookCard({ setBooks, user, ...book }) {
 - As a user I should be able to make a book public or private. (Public books are shared to explore/review page).
 - As a user, I should be able to externally share my review of a book.
 
+## Loom Walkthrough
+https://www.loom.com/share/91395d8033d446ee9660e3e158bdec70
 
 ## Wireframes
    ![home view](https://i.imgur.com/4N7pPYy.png)
